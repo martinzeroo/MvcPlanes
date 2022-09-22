@@ -1,16 +1,16 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace MvcMovie.Models
+namespace MvcPlane.Models
 {
-    public class Movie
+    public class Plane
     {
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string Name { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime ReleaseDate { get; set; }
-        public string Genre { get; set; }
+        public DateTime Departure { get; set; }
+        public string Type { get; set; }
         public decimal Price { get; set; }
     }
 }

@@ -19,28 +19,21 @@ namespace MvcPlanes.Controllers
             _context = context;
         }
 
-        // GET: Planes
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Plane.ToListAsync());
-        }
-
+       
+       
+ // GET: Planes
         // GET: Planes/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Index(string searchString)
         {
-            if (id == null)
+            var planes = from m in _context.Plane
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
             {
-                return NotFound();
+                planes = planes.Where(s => s.Name.Contains(searchString));
             }
 
-            var plane = await _context.Plane
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (plane == null)
-            {
-                return NotFound();
-            }
-
-            return View(plane);
+            return View(await planes.ToListAsync());
         }
 
         // GET: Planes/Create

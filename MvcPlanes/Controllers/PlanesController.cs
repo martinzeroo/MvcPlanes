@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcPlane.Models;
 using MvcPlanes.Data;
+using MvcPlanes.Models;
 
 namespace MvcPlanes.Controllers
 {
@@ -23,15 +24,30 @@ namespace MvcPlanes.Controllers
        
  // GET: Planes
         // GET: Planes/Details/5
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string PlaneModel, string searchString)
         {
+            IQueryable<string> ModelQuery = from m in _context.Plane
+                                            orderby m.Model
+                                            select m.Model;
+
             var planes = from m in _context.Plane
                          select m;
+
+            if (!String.IsNullOrEmpty(PlaneModel))
+            {
+                planes = planes.Where(s => s.Name.Contains(PlaneModel));
+            }
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 planes = planes.Where(s => s.Name.Contains(searchString));
             }
+
+            var planeModelVM = new PlaneModelViewModel
+            {
+                Model = new SelectList(await ModelQuery.Distinct().ToListAsync()),
+                Planes = await Plane.ToListAsync()
+            };
 
             return View(await planes.ToListAsync());
         }

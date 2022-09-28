@@ -27,6 +27,7 @@ namespace MvcPlanes.Models
                         Name = "Flying Fortress",
                         Departure = DateTime.Parse("2004-11-7"),
                         Model = "B-17",
+                        Speed ="462km/h",
                         Price = 600M
                     },
 
@@ -35,6 +36,7 @@ namespace MvcPlanes.Models
                         Name = "Stratoliner",
                         Departure = DateTime.Parse("1939-9-1"),
                         Model = "307",
+                        Speed = "357 km/h",
                         Price = 257M
                     },
 
@@ -43,6 +45,7 @@ namespace MvcPlanes.Models
                         Name = "Boeing",
                         Departure = DateTime.Parse("2022-10-31"),
                         Model = "737",
+                        Speed = "876 km/h",
                         Price = 330M
                     },
 
@@ -51,6 +54,7 @@ namespace MvcPlanes.Models
                         Name = "Stratocruiser",
                         Departure = DateTime.Parse("1914-8-27"),
                         Model = "377",
+                        Speed = "604 km/h",
                         Price = 456M
                     }
                 );

@@ -38,6 +38,7 @@ namespace MvcPlanes.Controllers
                 planes = planes.Where(s => s.Name.Contains(searchString));
             }
 
+
             if (!string.IsNullOrEmpty(PlaneModel))
             {
                 planes = planes.Where(x => x.Model == PlaneModel);
@@ -63,7 +64,7 @@ namespace MvcPlanes.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Departure,Type,Price")] Plane plane)
+        public async Task<IActionResult> Create([Bind("Id,Name,Departure,Model,Price,Speed")] Plane plane)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +96,7 @@ namespace MvcPlanes.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Departure,Type,Price")] Plane plane)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Departure,Model,Price,Speed")] Plane plane)
         {
             if (id != plane.Id)
             {

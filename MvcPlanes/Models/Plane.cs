@@ -15,9 +15,10 @@ namespace MvcPlane.Models
         [DataType(DataType.Date)]
         public DateTime Departure { get; set; }
         public string Model { get; set; }
+
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
-
+        public string Speed { get; set; }
 
     }
 }

@@ -18,9 +18,6 @@ namespace MvcPlane.Models
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
 
-        internal static Task<List<Plane>> ToListAsync()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

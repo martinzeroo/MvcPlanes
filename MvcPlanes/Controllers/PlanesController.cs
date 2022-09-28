@@ -33,23 +33,23 @@ namespace MvcPlanes.Controllers
             var planes = from m in _context.Plane
                          select m;
 
-            if (!String.IsNullOrEmpty(PlaneModel))
-            {
-                planes = planes.Where(s => s.Name.Contains(PlaneModel));
-            }
-
             if (!String.IsNullOrEmpty(searchString))
             {
                 planes = planes.Where(s => s.Name.Contains(searchString));
             }
 
+            if (!string.IsNullOrEmpty(PlaneModel))
+            {
+                planes = planes.Where(x => x.Model == PlaneModel);
+            }
+
             var planeModelVM = new PlaneModelViewModel
             {
                 Model = new SelectList(await ModelQuery.Distinct().ToListAsync()),
-                Planes = await Plane.ToListAsync()
+                Planes = await planes.ToListAsync()
             };
 
-            return View(await planes.ToListAsync());
+            return View(planeModelVM);
         }
 
         // GET: Planes/Create

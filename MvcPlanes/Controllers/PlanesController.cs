@@ -22,8 +22,8 @@ namespace MvcPlanes.Controllers
 
        
        
- // GET: Planes
-        // GET: Planes/Details/5
+        // GET: Planes
+       
         public async Task<IActionResult> Index(string PlaneModel, string searchString)
         {
             IQueryable<string> ModelQuery = from m in _context.Plane
@@ -52,7 +52,23 @@ namespace MvcPlanes.Controllers
 
             return View(planeModelVM);
         }
+        // GET: Planes/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var plane = await _context.Plane
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (plane == null)
+            {
+                return NotFound();
+            }
+
+            return View(plane);
+        }
         // GET: Planes/Create
         public IActionResult Create()
         {
